@@ -16,7 +16,7 @@ export function SideBar({ onOpenModal }: Props) {
       </span>
 
        <div onClick={onOpenModal} className="cart">
-          <img src="/assets/cart-icon.svg" alt="Cart" />
+          <img className="cardButton" src="/assets/cart-icon.svg" alt="Cart" />
        </div>
 
        <div   className="side-price">

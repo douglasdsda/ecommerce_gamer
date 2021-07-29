@@ -1,7 +1,7 @@
 .card {
   position: relative;
 
-
+  background: var(--white);
 
   img {
     width: 14.31rem;
@@ -51,15 +51,61 @@
           color: var(--gray);
 
           svg {
-            color: #FAE800;
+            color: #fae800;
             margin-right: 0.5rem;
           }
         }
       }
     }
   }
+
+
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+  
 }
 
 .cursor {
   cursor: pointer;
 }
+
+.card-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  display: flex;
+  padding: 10px;
+
+  align-items: center;
+
+  cursor: pointer;
+
+  
+
+  color: var(--white);
+
+  flex-direction: row;
+
+  span {
+    margin-right: 10px;
+  }
+
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
