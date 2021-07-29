@@ -29,4 +29,19 @@ nav.sidebar {
 
     width: 100%;
   }
+
+  .cart {
+    cursor: pointer;
+  }
+
+  .side-price{
+    margin-top: 40px;
+
+    strong {
+      font-size: 2rem;
+
+    }
+  }
+
 }
+
