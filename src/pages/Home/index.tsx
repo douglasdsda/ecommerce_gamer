@@ -26,7 +26,7 @@ export function Home() {
         onRequestClose={handleCloseModalOpen}
       />
 
-      <Content />
+      <Content onOpenModal={handleOpenModalOpen} />
     </div>
   );
 }

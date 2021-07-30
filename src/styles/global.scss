@@ -6,6 +6,7 @@
   --yellow: #FAE800;
   --gray: #BEC2C6;
   --white: #FBFBFB;
+  --success: #33cc33;
 }
 
 * {
@@ -42,7 +43,7 @@ button {
 
 .react-modal-content {
   width: 100%;
-  max-width: 576px;
+  max-width: 80vw;
   background: var(--background);
   padding: 3rem;
   position: relative;

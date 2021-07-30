@@ -1,24 +1,36 @@
 import { Star, Bookmark, PlusCircle, XCircle } from "react-feather";
+import { useCart } from "../hooks/useCart";
 
 import "../styles/card.scss";
 import { Product } from "../types";
 
-export function Card(props: Product) {
+interface Props extends Product {
+  onOpenModal: () => void
+}
+
+export function Card({ id,image,name,onOpenModal,price, score }: Props) {
+   const { addProduct } = useCart()
+
+  function handleAdd(productId: number){
+    addProduct(productId)
+    onOpenModal()
+  }
+
   return (
     <div className="card-wrapper">
       <div className="card cursor">
-        <img src={`/assets/${props.image}`} alt={props.name} />
+        <img src={`/assets/${image}`} alt={name} />
 
         <div>
           <div className="info">
-            <span>{props.name}</span>
+            <span>{name}</span>
             <div className="meta">
               <div>
-                <Star /> {props.score}
+                <Star /> {score}
               </div>
 
               <div>
-                <Bookmark /> R$ {props.price.toFixed(2)}
+                <Bookmark /> R$ {price.toFixed(2)}
               </div>
             </div>
           </div>
@@ -26,13 +38,9 @@ export function Card(props: Product) {
       </div>
 
       <div className="buttons">
-        <div className="button">
-          <span>Adicionar</span>
+        <div onClick={() => handleAdd(id)} className="button">
+          <span>Comprar</span>
           <PlusCircle />
-        </div>
-        <div className="button">
-          <span>Remover</span>
-          <XCircle />
         </div>
       </div>
     </div>

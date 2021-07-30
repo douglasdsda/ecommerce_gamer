@@ -19,14 +19,7 @@ export function SideBar({ onOpenModal }: Props) {
           <img className="cardButton" src="/assets/cart-icon.svg" alt="Cart" />
        </div>
 
-       <div   className="side-price">
-        <strong
-
-        >Checkout</strong>
-        <p>Subtotal: R$ 0,00</p>
-        <p>Total: R$ 0,00</p>
-
-       </div>
+      
 
     </nav>
   );

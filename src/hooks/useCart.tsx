@@ -8,7 +8,7 @@ import {
 } from "react";
 import { toast } from "react-toastify";
 import DataProducts from "../services/products.json";
-import { Product} from "../types";
+import { Product } from "../types";
 
 interface CartProviderProps {
   children: ReactNode;
@@ -29,7 +29,15 @@ interface CartContextData {
 const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<Product[]>(() => {
+    const storagedCart = localStorage.getItem("@cardList:douglas517:cart"); //Buscar dados do localStorage
+
+    if (storagedCart) {
+      return JSON.parse(storagedCart);
+    }
+
+    return [];
+  });
 
   const prevCartRef = useRef<Product[]>();
 
@@ -38,29 +46,31 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
   useEffect(() => {
     prevCartRef.current = cart;
   });
- 
 
-
+  useEffect(() => {
+    if (cartPreviousValue !== cart) {
+      localStorage.setItem("@cardList:douglas517:cart", JSON.stringify(cart));
+    }
+  }, [cart, cartPreviousValue]);
 
   const addProduct = async (productId: number) => {
     try {
       // TODO
       const updateCart = [...cart];
       const productExist = updateCart.find((item) => item.id === productId);
-   
-      const currentAmout = productExist ? productExist?.amount : 0;
+
+      const currentAmout = productExist ? productExist.amount : 0;
       const amount = (currentAmout || 0) + 1;
-     
+
       if (productExist) {
         productExist.amount = amount;
       } else {
         const listAuxProducts = [...DataProducts];
-        const product = listAuxProducts.find(item => item.id === productId)
-        if(product){
+        const product = listAuxProducts.find((item) => item.id === productId);
+        if (product) {
           const newProduct = { ...product, amount: 1 };
           updateCart.push(newProduct);
-        } else toast.error("Erro ao tentar adicionar o produto")
-
+        } else toast.error("Erro ao tentar adicionar o produto");
       }
       setCart([...updateCart]);
     } catch {
@@ -96,8 +106,6 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     try {
       // TODO
       if (amount <= 0) return;
-
-     
 
       const updateCart = [...cart];
       const productExist = updateCart.find((item) => item.id === productId);

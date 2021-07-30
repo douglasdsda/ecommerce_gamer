@@ -33,3 +33,32 @@ main {
     list-style: none;
   }
 }
+
+
+.list-sort {
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+   margin-bottom: 40px;
+
+  .button-sort {
+    padding: 8px;
+
+    border-radius: 8px;
+
+    background: var(--background2);
+
+    color: var(--gray);
+
+    text-align: center;
+
+    margin-right: 8px;
+
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
